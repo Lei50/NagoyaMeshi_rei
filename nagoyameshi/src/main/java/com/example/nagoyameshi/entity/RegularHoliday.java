@@ -16,19 +16,21 @@ import lombok.Data;
 import lombok.ToString;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "regular_holidays")
 @Data
-@ToString(exclude = "categoriesRestaurants")
-public class Category {
+@ToString(exclude = "regularHolidaysRestaurants")
+public class RegularHoliday {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "name")
-	private String name;
+	@Column(name = "day")
+	private String day;
 
-	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-	private List<CategoryRestaurant> categoriesRestaurants;
+	@Column(name = "day_index")
+	private Integer dayIndex;
 
+	@OneToMany(mappedBy = "regularHoliday", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	private List<RegularHolidayRestaurant> regularHolidaysRestaurants;
 }
